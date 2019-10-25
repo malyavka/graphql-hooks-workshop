@@ -28,6 +28,10 @@ const schema = `
   type Query {
     users: [User]
   }
+  
+  type Mutation {
+  createUser(name: String!): User
+  }
 `
 
 // TODO
@@ -37,6 +41,12 @@ const resolvers = {
   Query: {
     users() {
       return userList
+    }
+  },
+  Mutation: {
+    createUser(_, user) {
+      userList.push(user);
+      return user
     }
   }
 }
